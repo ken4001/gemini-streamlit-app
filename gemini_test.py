@@ -9,9 +9,10 @@ st.markdown("<h1 style='text-align: center;'>📊 數據分析 + 🤖 Gemini AI 
 # 安全讀取 API 金鑰
 try:
     api_key = st.secrets["genai"]["api_key"]
-except Exception:
-    st.error("❌ 無法取得 API 金鑰，請確認 .streamlit/secrets.toml 設定")
-    st.stop()
+    st.write("API Key 成功讀取:", api_key[:5] + "...")
+except Exception as e:
+    st.error("無法取得 API 金鑰：" + str(e))
+
 
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel('gemini-1.5-flash')
